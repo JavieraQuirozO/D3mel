@@ -1,0 +1,18 @@
+# Ignore everything in the repository root by default.
+/*
+
+# Keep this file tracked.
+!/.gitignore
+
+# Keep only the requested top-level entries.
+!/D3mel/
+!/test/
+!/main.py
+
+# Allow recursive tracking inside the kept directories.
+!/D3mel/**
+!/test/**
+
+# Ignore common generated Python artifacts inside tracked directories.
+__pycache__/
+*.py[cod]

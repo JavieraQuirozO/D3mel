@@ -16,10 +16,9 @@ class D3mel(Utilities):
     def __name__(self):
         self.__name__ = 'Data Downloader of Drosophila melanogaster'
 
-    def __init__(self, username, password, email=None):
+    def __init__(self):
+        super().__init__()
 
-        super().__init__(username, password, email)
-    
     def get_GAF(self, EVIDENCE_BLACKLIST = ['IEA']):
         return super().get_GAF(EVIDENCE_BLACKLIST = EVIDENCE_BLACKLIST)
     
@@ -56,5 +55,3 @@ class D3mel(Utilities):
     def get_proyects(self, matriz = None):
         return super().get_proyects(matriz)
     
-    def close_app(self):
-        super().close_app()

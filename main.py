@@ -7,35 +7,44 @@ Created on Wed Nov 27 19:26:03 2024
 """
 
 from D3mel import D3mel
+import random
 
 
-
-user = "prueba2"
-password = "prueba"
-email = "prueba2@gmail.com"
-   
 
 #%%
 
-d3m = D3mel(user, password)
-
-#%%
-GO = d3m.fbd.Ontology_Terms.GO()
+d3m = D3mel()
 
 #%%
 GO = d3m.get_GO()
-GOlist = ["GO:0006974", "GO:0006302", "GO:0006281", "GO:0006301", "GO:0000724", "GO:0006298", "GO:0000729", "GO:0006289", "GO:0006282", "GO:0006977"]
+GOlist = ["GO:0006793", "GO:0016310", "GO:0006796", "GO:0006470", "GO:0046835"] #metabolismo del fosforo
 
 #%%
-hijos = d3m.get_descendent(GOlist, i_max=1)
+hijos_nietos = d3m.get_descendent(GOlist, i_max=2)
 
 #%%
+padres_abuelos = d3m.get_ascendent(GOlist, i_max=2)
+#%%
+elementos = GOlist
 
-padres = d3m.get_ascendent(GOlist, i_max=1)
+for dic in [hijos_nietos, padres_abuelos]:
+    for key, values in dic.items():
+        elementos.extend(values)
+elementos = set(elementos)
+
+#%%
+negativos = list(set(GO.nodes()) - elementos)
+negativos = random.sample(negativos, len(elementos))
+
 #%%
 GOs_byCmp = d3m.get_GOs_byCmp()
 gaf = d3m.get_GAF()
-genes = list(gaf[gaf["GO ID"].isin(GOlist)]["DB Object ID"])
-proyect = d3m.get_proyects()
+
 #%%
-dfs = d3m.RNA_by_proyect(genes, proyect[0:2])
+proyects = d3m.get_proyects()
+genes_positivos = list(gaf[gaf["GO ID"].isin(GOlist)]["DB Object ID"])
+conj_positivo = d3m.RNA_by_proyect(genes_positivos, proyects)
+
+#%%
+genes_negativos = list(gaf[gaf["GO ID"].isin(negativos)]["DB Object ID"])
+conj_negativos = d3m.RNA_by_proyect(genes_negativos, proyects)
