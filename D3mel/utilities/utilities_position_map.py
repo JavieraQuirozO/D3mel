@@ -16,7 +16,6 @@ class UtilitiesPositionMap():
     def get_location(self):
         map_loc = self._gene_map.copy()
 
-        # FBD v4+ limpia el prefijo ##: "##organism_abbreviation" → "organism_abbreviation"
         map_loc = map_loc[map_loc['organism_abbreviation'] == "Dmel"]
         map_loc.dropna(subset=['sequence_loc'], inplace=True)
 

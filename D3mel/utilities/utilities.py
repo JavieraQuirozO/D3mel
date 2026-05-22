@@ -9,6 +9,7 @@ from FBD.fbd import FBD
 import pandas as pd
 
 
+#EXPLICAR. ES POR LA VIEJA VERSIÓN DE FBD??
 def _empty_optional_dataset(dataset_name):
     if dataset_name == "gene_map_table":
         return pd.DataFrame(columns=["organism_abbreviation", "sequence_loc", "current_symbol"])

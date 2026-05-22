@@ -8,6 +8,7 @@
 !/D3mel/
 !/test/
 !/main.py
+!/getDataset.py
 
 # Allow recursive tracking inside the kept directories.
 !/D3mel/**

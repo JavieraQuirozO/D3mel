@@ -126,3 +126,14 @@ class Get_dataset():
 
 
       return conj_positivo, conj_negativos
+
+
+# #%%
+# import pandas as pd
+
+# data = Get_dataset()
+
+# gos = data.get_go_count()
+# #%%
+# df = pd.DataFrame(list(gos.items()), columns=["GO", "Count"])
+# df.to_excel("df_count.xlsx", index=False)
